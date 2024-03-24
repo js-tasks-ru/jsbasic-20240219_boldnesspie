@@ -39,6 +39,34 @@ export default class CartIcon {
   }
 
   updatePosition() {
-    // ваш код ...
+    if (!this.elem.offsetWidth) return;
+    let top = this.elem.getBoundingClientRect().top;
+
+    let leftIndent = Math.min(
+      document.querySelector('.container').getBoundingClientRect().right + 20,
+      document.documentElement.clientWidth - this.elem.offsetWidth - 10
+    ) + 'px';
+    
+    if (window.scrollY > top) {
+
+      Object.assign(this.elem.style, {
+        position: 'fixed',
+        top: '50px',
+        zIndex: 1e3,
+        left: leftIndent
+      });
+    }
+    
+    if (window.scrollY === 0 || window.innerWidth <= 767) {
+      // Баг или фича в яндекс браузере, 
+      // но @media включает ширину прокрутки, поэтому window.innerWidth
+
+      Object.assign(this.elem.style, {
+        position: '',
+        top: '',
+        zIndex: '',
+        left: ''
+      });
+    }
   }
 }
