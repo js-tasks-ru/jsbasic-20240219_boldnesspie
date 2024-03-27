@@ -40,7 +40,7 @@ export default class Modal {
 
   setBody(elem) {
     let modalBody = this.modalWindow.querySelector('.modal__body');
-    modalBody.innerHTML = elem.outerHTML;
+    modalBody.append(elem);
   }
 
   close() {
