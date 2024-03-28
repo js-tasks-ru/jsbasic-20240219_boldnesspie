@@ -35,12 +35,13 @@ export default class Modal {
 
   setTitle(title) {
     let modalTitle = this.modalWindow.querySelector('.modal__title');
-    modalTitle.textContent = title;
+    if (modalTitle) modalTitle.textContent = title;
   }
 
   setBody(elem) {
     let modalBody = this.modalWindow.querySelector('.modal__body');
-    modalBody.innerHTML = elem.outerHTML;
+    if (modalBody) modalBody.innerHTML = '';
+    modalBody.append(elem);
   }
 
   close() {
